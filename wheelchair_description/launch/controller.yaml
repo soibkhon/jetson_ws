@@ -1,0 +1,41 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    revolute_1_position_controller:
+      type: position_controllers/JointPositionController
+      
+    revolute_2_position_controller:
+      type: position_controllers/JointPositionController
+      
+    revolute_3_position_controller:
+      type: position_controllers/JointPositionController
+      
+    revolute_4_position_controller:
+      type: position_controllers/JointPositionController
+      
+    revolute_5_position_controller:
+      type: position_controllers/JointPositionController
+
+revolute_1_position_controller:
+  ros__parameters:
+    joint: "Revolute 1"
+
+revolute_2_position_controller:
+  ros__parameters:
+    joint: "Revolute 2"
+
+revolute_3_position_controller:
+  ros__parameters:
+    joint: "Revolute 3"
+
+revolute_4_position_controller:
+  ros__parameters:
+    joint: "Revolute 4"
+
+revolute_5_position_controller:
+  ros__parameters:
+    joint: "Revolute 5"

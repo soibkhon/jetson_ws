@@ -1,0 +1,229 @@
+<?xml version="1.0" ?>
+<robot name="wheelchair" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find wheelchair_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find wheelchair_description)/urdf/wheelchair.trans" />
+<xacro:include filename="$(find wheelchair_description)/urdf/wheelchair.gazebo" />
+
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="332.01068376069776"/>
+    <inertia ixx="28.453256" iyy="23.493643" izz="18.780017" ixy="0.242673" iyz="-7.755885" ixz="0.389285"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/base_fixed.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/base_fixed.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+<link name="lip_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="18.27800057815573"/>
+    <inertia ixx="0.124422" iyy="0.14266" izz="0.263549" ixy="0.0" iyz="0.001029" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/lip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/lip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="21.702165340628166"/>
+    <inertia ixx="0.161714" iyy="0.086752" izz="0.086752" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/front.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/front.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <mass value="21.702165340628156"/>
+    <inertia ixx="0.161714" iyy="0.086752" izz="0.086752" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/front.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/front.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_right_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="17.247382273323833"/>
+    <inertia ixx="0.169076" iyy="0.094827" izz="0.094827" ixy="1e-06" iyz="-1e-06" ixz="-1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/back.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/back.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_left_1">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <mass value="17.247400849331317"/>
+    <inertia ixx="0.169076" iyy="0.094827" izz="0.094827" ixy="-1e-06" iyz="-1e-06" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/back.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+    <geometry>
+      <mesh filename="package://wheelchair_description/meshes/back.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+  <link name="laser_left">
+    <inertial>
+      <origin xyz="0 0 0" /> 
+      <mass value="1.0" />
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.073 0.06" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.073 0.06" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="laser_left">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+
+    <link name="laser_right">
+    <inertial>
+      <origin xyz="0 0 0" /> 
+      <mass value="1.0" />
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.073 0.06" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.073 0.06" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="laser_left">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+
+
+
+<joint name="Lip_joint" type="fixed">
+  <origin xyz="0.58288042351 -0.135  0.14078186452388763" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lip_1"/>
+  <limit upper="1.570796" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="FR_joint" type="fixed">
+  <origin xyz="0.53412685915 -0.27255433797836304  0.12812547385692596" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_right_1"/>
+</joint>
+
+<joint name="FL_joint" type="fixed">
+  <origin xyz="0.53412685915 0.27255433797836304  0.12812547385692596" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_left_1"/>
+</joint>
+
+<joint name="BR_joint" type="fixed">
+  <origin xyz="0 -0.250498  0.12285605818033218" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_right_1"/>
+</joint>
+
+<joint name="BL_joint" type="fixed">
+  <origin xyz="0 0.250498  0.12285605818033218" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_left_1"/>
+</joint>
+
+<joint name="lidar_left_joint" type="fixed">
+  <origin xyz="0.53412685915 0.24555433797836304 0.30312547385692596" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_left"/>
+</joint>
+
+<joint name="lidar_right_joint" type="fixed">
+  <origin xyz="0.53412685915  -0.24555433797836304 0.30312547385692596" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_right"/>
+</joint>
+
+</robot>

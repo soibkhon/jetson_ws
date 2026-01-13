@@ -1,0 +1,42 @@
+# Direction-Based Collision Avoidance Configuration
+# Simple approach using joystick x,y values to determine movement direction
+direction_collision_node:
+  ros__parameters:
+    # Robot dimensions for footprint filtering
+    robot_width: 0.7                    # Wheelchair width (meters)
+    robot_length: 0.95                  # Wheelchair length (meters)
+    footprint_margin: 0.1               # Safety margin around footprint
+    min_valid_range: 0.2                # Filter points closer than 20cm
+    
+    # Collision detection parameters
+    safety_distance: 0.4                # Emergency stop distance (meters)
+    warning_distance: 1.0               # Start slowing distance (meters)
+    detection_width: 60.0               # Width of detection cone (degrees)
+    
+    # Speed control
+    base_speed_multiplier: 2.5          # Make everything 2.5x faster
+    min_speed_factor: 0.2               # Minimum speed when obstacle detected
+    emergency_stop_enabled: true        # Enable emergency stops
+    
+    # Topic configuration
+    input_scan_topic: '/scan'           # Input laser scan
+    output_scan_topic: '/scan_filtered' # Filtered scan output  
+    input_cmd_vel_topic: 'cmd_vel_nav'  # Input velocity commands
+    output_cmd_vel_topic: 'cmd_vel'     # Output to motor controller
+    
+    # Publishing options
+    publish_filtered_scan: true         # Publish cleaned scan
+    publish_debug_info: true            # Publish debug topics
+
+# How it works:
+# 1. Takes cmd_vel with linear.x, linear.y, angular.z
+# 2. Calculates intended direction: angle = atan2(y, x)
+# 3. Checks for obstacles in that direction ±30° cone
+# 4. Reduces speed if obstacles found
+# 5. Sends modified cmd_vel to motor controller
+#
+# Examples:
+# - Joystick forward (y=1, x=0) -> checks 0° direction (straight ahead)
+# - Joystick right (y=0, x=1) -> checks 90° direction (right side)
+# - Joystick diagonal (y=0.7, x=0.7) -> checks 45° direction (forward-right)
+# - Pure rotation -> checks front direction for safety

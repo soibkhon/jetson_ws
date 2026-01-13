@@ -1,0 +1,25 @@
+# jetson_params.yaml - Place this on the Jetson
+# Collision avoidance parameters optimized for costmap usage
+
+/**:
+  ros__parameters:
+    # === COLLISION AVOIDANCE PARAMETERS ===
+    collision_avoidance_enabled: true
+    
+    # Distance thresholds (meters)
+    safety_distance: 0.5           # Hard stop distance 
+    warning_distance: 1.0          # Start slowing down distance
+    check_ahead_distance: 1.2      # How far ahead to check for forward/backward motion
+    check_side_distance: 0.8       # How far to sides to check for turning
+    
+    # Robot physical parameters
+    robot_radius: 0.4              # Robot radius for collision checking (meters)
+    
+    # Costmap interpretation
+    costmap_obstacle_threshold: 80  # Costmap values above this are obstacles (0-100)
+    max_deceleration_factor: 0.2   # Minimum speed when obstacles detected (0.0-1.0)
+    
+    # Basic motor parameters (only change if different from defaults)
+    wheel_diameter: 0.243
+    wheel_base: 0.598
+    max_joystick_speed: 50

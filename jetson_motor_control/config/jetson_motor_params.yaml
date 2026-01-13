@@ -1,0 +1,87 @@
+# collision_avoidance_params.yaml
+# Configuration for joystick collision avoidance system
+
+jetson_motor_controller:
+  ros__parameters:
+    # Basic motor configuration
+    can_interface: 'socketcan'
+    can_channel: 'can1'
+    motor_left_id: 1
+    motor_right_id: 2
+    wheel_diameter: 0.243
+    wheel_base: 0.598
+    encoder_resolution: 4096
+    max_linear_velocity: 0.83
+    max_angular_velocity: 0.5
+    max_joystick_speed: 50
+    
+    # GPIO configuration
+    gpio_pin_speed_up: 29
+    gpio_pin_speed_down: 31
+    gpio_pin_brake: 33
+    hold_time_enable_motors: 3.0
+    hold_time_disable_motors: 2.0
+    
+    # Control parameters
+    publish_rate: 50.0
+    joystick_publish_rate: 20.0
+    joystick_deadzone: 0.2
+    speed_scale_increment: 0.1
+    cmd_vel_timeout: 0.5
+    button_debounce_time: 0.3
+    
+    # === COLLISION AVOIDANCE PARAMETERS ===
+    
+    # Enable/disable collision avoidance for joystick control
+    collision_avoidance_enabled: true
+    
+    # Distance thresholds (in meters)
+    safety_distance: 0.6        # Hard stop distance - robot will not move if obstacles closer
+    warning_distance: 1.2       # Warning distance - robot will slow down
+    
+    # Detection parameters
+    collision_check_points: 5           # Number of points to check in each direction
+    collision_check_distance: 2.0      # How far ahead to check (meters)
+    max_deceleration_factor: 0.2       # Minimum speed factor when obstacles detected (0.0-1.0)
+    
+    # Sensor selection
+    use_laser_scan: true               # Prefer laser scan over costmap (faster, more accurate)
+    
+    # Angular sectors for collision detection (degrees)
+    front_sector_angle: 60      # ±30 degrees for front detection
+    side_sector_angle: 90       # 90 degrees for left/right detection
+    back_sector_angle: 120      # 120 degrees for back detection
+    
+    # Advanced collision avoidance settings
+    collision_check_frequency: 20.0    # Hz - how often to check for collisions
+    velocity_scaling_mode: 'proportional'  # 'proportional', 'step', or 'exponential'
+    
+    # Proportional scaling parameters (when velocity_scaling_mode = 'proportional')
+    min_velocity_factor: 0.1           # Minimum velocity when obstacle detected
+    max_velocity_factor: 1.0           # Maximum velocity when no obstacles
+    
+    # Step scaling parameters (when velocity_scaling_mode = 'step')
+    velocity_steps: [0.2, 0.5, 0.8, 1.0]  # Velocity factors for different distances
+    distance_steps: [0.6, 0.9, 1.2, 1.5]  # Distance thresholds for each step
+    
+    # Emergency stop parameters
+    emergency_stop_distance: 0.3       # Distance for immediate emergency stop
+    emergency_stop_enabled: true       # Enable emergency stop feature
+    
+    # Direction-specific parameters
+    front_safety_distance: 0.6         # Safety distance for forward motion
+    back_safety_distance: 0.5          # Safety distance for backward motion
+    side_safety_distance: 0.4          # Safety distance for lateral motion
+    
+    # Turning bias when obstacles detected
+    preferred_turn_direction: 'right'   # 'left', 'right', or 'auto'
+    turn_bias_factor: 0.7              # Reduce turning speed when obstacles on turn side
+    
+    # Frame configuration
+    odom_frame_id: 'odom'
+    base_frame_id: 'base_link'
+    publish_tf: true
+    
+    # Covariance matrices
+    pose_covariance_diagonal: [0.01, 0.01, 0.001, 0.001, 0.001, 0.09]
+    twist_covariance_diagonal: [0.002, 0.001, 0.001, 0.001, 0.001, 0.02]
